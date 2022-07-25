@@ -18,7 +18,7 @@
       </template>
       <!-- 二级菜单 -->
       <el-menu-item-group v-for="(subItem) in item.children" :key="subItem.path">
-        <el-menu-item :index="subItem.path">{{subItem.label}}</el-menu-item>
+        <el-menu-item :index="subItem.path" @click="clickMenu(subItem)">{{subItem.label}}</el-menu-item >
       </el-menu-item-group>
     </el-submenu>
 
@@ -85,6 +85,8 @@ export default {
       this.$router.push({
         name: item.name
       })
+      // 面包屑, 点击传入路径数据
+      this.$store.commit('selectMenu',item)
     }
   },
   computed: {
